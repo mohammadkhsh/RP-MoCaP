@@ -42,16 +42,12 @@ This script handles the offline projection of 3D MoCap data onto 2D images. It t
 ## Setup
 
 1. Clone the repository:
-   \`\`\`bash
-   git clone https://github.com/yourusername/3Dpose-annotation.git
-   cd 3Dpose-annotation
-   \`\`\`
+   ```bash
+   git clone https://github.com/mohammadkhsh/RP-MoCap.git
+   ```
 
 2. Install dependencies:
-   \`\`\`bash
-   pip install -r requirements.txt
-   \`\`\`
-
+   
 ## Usage
 
 ### 1. Running the Recorder
