@@ -1,0 +1,6 @@
+devel_space: /lhome/mkhoshk/Desktop/MoCap_Project/camera/MoCap_ws/src/custom_msg_f32/devel
+install: false
+install_space: /lhome/mkhoshk/Desktop/MoCap_Project/camera/MoCap_ws/src/custom_msg_f32/install
+profile: default
+source_space: /lhome/mkhoshk/Desktop/MoCap_Project/camera/MoCap_ws/src/custom_msg_f32/src
+workspace: /lhome/mkhoshk/Desktop/MoCap_Project/camera/MoCap_ws/src/custom_msg_f32
