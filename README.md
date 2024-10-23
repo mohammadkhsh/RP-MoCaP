@@ -1,4 +1,4 @@
-# MoCap_Project![0](https://media.git.i.mercedes-benz.com/user/29336/files/9bc85833-3135-46c2-80e4-aca53ee0c070)
+
 
 # Automatic Annotation of Human 3D Poses in 2D Images Using MoCap
 
@@ -52,28 +52,32 @@ This script handles the offline projection of 3D MoCap data onto 2D images. It t
 
 ### 1. Running the Recorder
 To record 2D images and their associated 3D MoCap poses, run:
-\`\`\`bash
+```bash
 python Automized_recorder.py --output_dir /path/to/output
-\`\`\`
+```
 
 ### 2. Calibration Check
 Verify the camera calibration using:
-\`\`\`bash
+```bash
 python calibration_check.py --calibration_file /path/to/calibration
-\`\`\`
+```
 
 ### 3. Convert JPEG to ROS Bag
 To convert images into a ROS bag format:
-\`\`\`bash
+```bash
 python jpg2rosbag.py --input_dir /path/to/images --output /path/to/rosbag.bag
-\`\`\`
+```
 
 ### 4. Project 3D Poses onto 2D Images
 For offline annotation projection:
-\`\`\`bash
+```bash
 python projector_jpg_offline.py --pose_file /path/to/poses --image_dir /path/to/images --output /path/to/annotated_images
-\`\`\`
+```
 
-## License
+## Acknowledgments
 
-This project is licensed under the MIT License.
+This project was developed in collaboration between the University of Stuttgart and Mercedes-Benz.
+
+## Confidentiality Notice
+
+The contents of this repository are confidential and proprietary. Unauthorized copying or distribution of the materials within this repository is strictly prohibited.
