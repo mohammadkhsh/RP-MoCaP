@@ -26,7 +26,7 @@ This node is performing very similarly to the previous one, but it does not use 
 ### `projector_rviz_offline.py`
 For debugging purposes, sometimes we need to see reconstructed 3D poses in ROS RVIZ environment, so that we can detect any device miscalibration, drifts or coordination misconfiguration. This node creates marker for joints and publish markers data to a topic which RVIZ can subscribe to.
 
-### `rosbag2RVIZ.py` and `rosbag2video`
+### `rosbag2RVIZ.py` and `rosbag2video.py`
 These scripts are intended to convert recorded ROS bag files to either marker in RVIZ to replay the saved motions or replay the saved images as video for visualization outputs.
 
 ### Other Python Scripts
