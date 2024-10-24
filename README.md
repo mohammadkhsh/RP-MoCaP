@@ -2,7 +2,7 @@
 
 # Automatic Annotation of Human 3D Poses in 2D Images Using MoCap
 
-This project provides a set of modules for automating the annotation of human 3D poses in 2D images with Motion Capture (MoCap) data. The pipeline includes scripts for MoCap dataloader node, calibration checks, converting images to ROS bags, offline image projection.
+This project provides a set of modules for automating the annotation of human 3D poses in 2D images with Motion Capture (MoCap) data. The pipeline includes scripts for MoCap dataloader node, debugging checks, converting different formats to ROS bags, projectors and synchronisers.
 
 ## Project Structure
 
