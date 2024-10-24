@@ -2,42 +2,33 @@
 
 # Automatic Annotation of Human 3D Poses in 2D Images Using MoCap
 
-This project provides a set of tools for automating the annotation of human 3D poses in 2D images using Motion Capture (MoCap) data. The pipeline includes tools for recording, calibration checks, converting images to ROS bags, and offline image projection.
+This project provides a set of modules for automating the annotation of human 3D poses in 2D images with Motion Capture (MoCap) data. The pipeline includes scripts for MoCap dataloader node, calibration checks, converting images to ROS bags, offline image projection.
 
 ## Project Structure
 
 The repository contains the following Python scripts:
 
-### 1. `Automized_recorder.py`
-This script automates the recording process for 3D pose data using a camera and MoCap system. It captures 2D images and associates them with 3D pose annotations, which can then be used for training machine learning models.
+### `mocap_node.py`
+This node establishes a TCP connection to the MoCap device and retrieve the information for each joint, such as position, speed, acceleration and  
 
-#### Key Features:
-- Records 3D poses from MoCap system.
-- Captures synchronized 2D images for each 3D pose.
-- Automatically handles the storage and management of recorded data.
+### `Automized_recorder.py`
+This script automates the recording process for 3D pose data using a camera and MoCap system. It subscribes to the topics of 2D images from camera node and 3D pose information from MoCap node. It then operates the synchronization process and find the best match of image/pose in real-time. The final image/pose matches are then stored for further processing.
 
-### 2. `calibration_check.py`
-This script ensures that the camera is properly calibrated with the MoCap system. It performs a series of checks to verify the calibration's accuracy, crucial for maintaining the integrity of 3D pose annotations.
+### `jpg2rosbag.py`
+This script converts a series of JPEG images into a ROS bag format, which allows for easy playback and analysis within the ROS framework. 
 
-#### Key Features:
-- Verifies calibration parameters.
-- Provides visual feedback on calibration quality.
-- Outputs calibration correction if necessary.
+### `projector_jpg_offline.py`
+This script handles the offline projection of 3D MoCap data onto 2D images. It takes recorded 3D poses from csv files and their match (jpg files). It also loads the camera calibration file. Afterwards, with all these information in hand, it finds each joint on the 2D image plane. The body hierarchy is defined, so the script can connect the joints to each other and draw the complete skeleton on the image. Some rotation/translation shifts caused by initial drift can also be compensated by manual setting or mouse calibration. The overlaied images with skeleton will be saved for qualitative evaluation.
 
-### 3. `jpg2rosbag.py`
-This script converts a series of JPEG images into a ROS bag format, allowing for easy playback and analysis within the ROS framework. It's especially useful when working with ROS for robotic applications or post-processing data.
+### `projector_online.py`
+This node is performing very similarly to the previous one, but it does not use the jpg and csv files which have been saved before! This script directly subscribes to the camera, MoCap and calibration nodes and retrieve the fresh data online and it does all steps in real-time.
 
-#### Key Features:
-- Converts images to ROS bag format.
-- Organizes image sequences into time-stamped data streams.
+### `projector_rviz_offline.py`
+For debugging purposes, sometimes we need to see reconstructed 3D poses in ROS RVIZ environment, so that we can detect any device miscalibration, drifts or coordination misconfiguration. This node creates marker for joints and publish markers data to a topic which RVIZ can subscribe to.
 
-### 4. `projector_jpg_offline.py`
-This script handles the offline projection of 3D MoCap data onto 2D images. It takes recorded 3D poses and projects them onto corresponding 2D images to create annotated datasets.
+### `rosbag2RVIZ.py` and `rosbag2video`
+These scripts are intended to convert recorded ROS bag files to either marker in RVIZ to replay the saved motions or replay the saved images as video for visualization outputs.
 
-#### Key Features:
-- Projects 3D poses onto 2D image planes.
-- Supports batch processing for large datasets.
-- Visualizes projected poses on the images.
 
 ## Setup
 
@@ -46,33 +37,8 @@ This script handles the offline projection of 3D MoCap data onto 2D images. It t
    git clone https://github.com/mohammadkhsh/RP-MoCap.git
    ```
 
-2. Install dependencies:
+2. Install dependencies.
    
-## Usage
-
-### 1. Running the Recorder
-To record 2D images and their associated 3D MoCap poses, run:
-```bash
-python Automized_recorder.py --output_dir /path/to/output
-```
-
-### 2. Calibration Check
-Verify the camera calibration using:
-```bash
-python calibration_check.py --calibration_file /path/to/calibration
-```
-
-### 3. Convert JPEG to ROS Bag
-To convert images into a ROS bag format:
-```bash
-python jpg2rosbag.py --input_dir /path/to/images --output /path/to/rosbag.bag
-```
-
-### 4. Project 3D Poses onto 2D Images
-For offline annotation projection:
-```bash
-python projector_jpg_offline.py --pose_file /path/to/poses --image_dir /path/to/images --output /path/to/annotated_images
-```
 
 ## Acknowledgments
 
