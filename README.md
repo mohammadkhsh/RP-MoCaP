@@ -9,7 +9,7 @@ This project provides a set of modules for automating the annotation of human 3D
 The repository contains the following Python scripts:
 
 ### `mocap_node.py`
-This node establishes a TCP connection to the MoCap device and retrieve the information for all 32 joints, such as position, speed and acceleration. Then, it publishes the information with Float32MultiArray format to the selected topic. The Float32MultiArray is manually designed by me to efficiently transmit and receive skeleton data and timestamps.
+This node establishes a TCP connection to the MoCap device and retrieve the information for all 32 joints, such as position, speed and acceleration. Then, it publishes the information with Float32MultiArray format to the selected topic. The Float32MultiArray (ROS msg. format) is manually designed by me to efficiently transmit and receive skeleton data and timestamps.
 
 ### `Automized_recorder.py`
 This script automates the recording process for 3D pose data using a camera and MoCap system. It subscribes to the topics of 2D images from camera node and 3D pose information from MoCap node. It then operates the synchronization process and find the best match of image/pose in real-time. The final image/pose matches are then stored for further processing.
